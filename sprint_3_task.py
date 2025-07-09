@@ -38,7 +38,7 @@ class OnlineSalesRegisterCollector:
             return sum(total) * 0.9
         return sum(total)
 
-    def twenty_percent_tax_calculation(self):
+    def _twenty_percent_tax_calculation(self):
         twenty_percent_tax = [name for name in self.__name_items if self.__tax_rate[name] == 20]
         total = [self.__item_price[name] for name in twenty_percent_tax]
         total_sum = sum(map(lambda x: x * 0.2, total))
@@ -47,7 +47,7 @@ class OnlineSalesRegisterCollector:
         return total_sum
 
 
-    def ten_percent_tax_calculation(self):
+    def _ten_percent_tax_calculation(self):
         ten_percent_tax = [name for name in self.__name_items if self.__tax_rate[name] == 10]
         total = [self.__item_price[name] for name in ten_percent_tax]
         total_sum = sum(map(lambda x: x * 0.1, total))
@@ -56,6 +56,8 @@ class OnlineSalesRegisterCollector:
         return total_sum
 
 
+    def total_tax(self):
+        return self._twenty_percent_tax_calculation() + self._ten_percent_tax_calculation()
 
 
 
@@ -77,5 +79,6 @@ tt.add_item_to_cheque('молоко')
 print(tt.get_name_items)
 print(tt.get_number_items)
 print(tt.check_amount())
-print(tt.ten_percent_tax_calculation())
-print(tt.twenty_percent_tax_calculation())
+print(tt._ten_percent_tax_calculation())
+print(tt._twenty_percent_tax_calculation())
+print(tt.total_tax())
