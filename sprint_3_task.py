@@ -46,7 +46,6 @@ class OnlineSalesRegisterCollector:
             return total_sum * 0.9
         return total_sum
 
-
     def _ten_percent_tax_calculation(self):
         ten_percent_tax = [name for name in self.__name_items if self.__tax_rate[name] == 10]
         total = [self.__item_price[name] for name in ten_percent_tax]
@@ -54,7 +53,6 @@ class OnlineSalesRegisterCollector:
         if self.__number_items > 10:
             return total_sum * 0.9
         return total_sum
-
 
     def total_tax(self):
         return self._twenty_percent_tax_calculation() + self._ten_percent_tax_calculation()
@@ -70,33 +68,6 @@ class OnlineSalesRegisterCollector:
     @staticmethod
     def get_date_and_time():
         now = datetime.datetime.now()
-        date = [['часы', lambda x: x.hour], ['минуты',lambda x: x.minute],['день',lambda x: x.day],['месяц',lambda x: x.month], ['год',lambda x: x.year]]
-        date_and_time = [f'{dt[0]}: {dt[1](now)}' for dt in date ]
+        date = [['часы', lambda x: x.hour], ['минуты',lambda x: x.minute], ['день',lambda x: x.day], ['месяц',lambda x: x.month], ['год',lambda x: x.year]]
+        date_and_time = [f'{dt[0]}: {dt[1](now)}' for dt in date]
         return date_and_time
-
-
-
-
-tt = OnlineSalesRegisterCollector()
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('кола')
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('кола')
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('кола')
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('чипсы')
-tt.add_item_to_cheque('кола')
-tt.delete_item_from_check('кола')
-tt.add_item_to_cheque('молоко')
-print(tt.get_name_items)
-print(tt.get_number_items)
-print(tt.check_amount())
-print(tt._ten_percent_tax_calculation())
-print(tt._twenty_percent_tax_calculation())
-print(tt.total_tax())
-print(OnlineSalesRegisterCollector.get_telephone_number(9856548758))
-print(OnlineSalesRegisterCollector.get_date_and_time())
