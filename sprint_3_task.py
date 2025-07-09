@@ -34,14 +34,26 @@ class OnlineSalesRegisterCollector:
     
     def check_amount(self):
         total = [self.__item_price[name] for name in self.__name_items]
-        if len(total) > 10:
+        if self.__number_items > 10:
             return sum(total) * 0.9
         return sum(total)
 
+    def twenty_percent_tax_calculation(self):
+        twenty_percent_tax = [name for name in self.__name_items if self.__tax_rate[name] == 20]
+        total = [self.__item_price[name] for name in twenty_percent_tax]
+        total_sum = sum(map(lambda x: x * 0.2, total))
+        if self.__number_items > 10:
+            return total_sum * 0.9
+        return total_sum
 
 
-
-
+    def ten_percent_tax_calculation(self):
+        ten_percent_tax = [name for name in self.__name_items if self.__tax_rate[name] == 10]
+        total = [self.__item_price[name] for name in ten_percent_tax]
+        total_sum = sum(map(lambda x: x * 0.1, total))
+        if self.__number_items > 10:
+            return total_sum * 0.9
+        return total_sum
 
 
 
@@ -61,6 +73,9 @@ tt.add_item_to_cheque('чипсы')
 tt.add_item_to_cheque('чипсы')
 tt.add_item_to_cheque('кола')
 tt.delete_item_from_check('кола')
+tt.add_item_to_cheque('молоко')
 print(tt.get_name_items)
 print(tt.get_number_items)
 print(tt.check_amount())
+print(tt.ten_percent_tax_calculation())
+print(tt.twenty_percent_tax_calculation())
