@@ -31,3 +31,36 @@ class OnlineSalesRegisterCollector:
             self.__number_items -= 1
         else:
             raise NameError('Позиция отсутствует в чеке')
+    
+    def check_amount(self):
+        total = [self.__item_price[name] for name in self.__name_items]
+        if len(total) > 10:
+            return sum(total) * 0.9
+        return sum(total)
+
+
+
+
+
+
+
+
+
+
+tt = OnlineSalesRegisterCollector()
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('кола')
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('кола')
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('кола')
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('чипсы')
+tt.add_item_to_cheque('кола')
+tt.delete_item_from_check('кола')
+print(tt.get_name_items)
+print(tt.get_number_items)
+print(tt.check_amount())
