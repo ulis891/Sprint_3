@@ -59,6 +59,22 @@ class OnlineSalesRegisterCollector:
     def total_tax(self):
         return self._twenty_percent_tax_calculation() + self._ten_percent_tax_calculation()
 
+    @staticmethod
+    def get_telephone_number(telephone_number):
+        if not isinstance(telephone_number, int):
+            raise ValueError('Необходимо ввести цифры')
+        if len(str(telephone_number)) > 10:
+            raise ValueError('Необходимо ввести 10 цифр после "+7"')
+        return f'+7{telephone_number}'
+
+    @staticmethod
+    def get_date_and_time():
+        now = datetime.datetime.now()
+        date = [['часы', lambda x: x.hour], ['минуты',lambda x: x.minute],['день',lambda x: x.day],['месяц',lambda x: x.month], ['год',lambda x: x.year]]
+        date_and_time = [f'{dt[0]}: {dt[1](now)}' for dt in date ]
+        return date_and_time
+
+
 
 
 tt = OnlineSalesRegisterCollector()
@@ -82,3 +98,5 @@ print(tt.check_amount())
 print(tt._ten_percent_tax_calculation())
 print(tt._twenty_percent_tax_calculation())
 print(tt.total_tax())
+print(OnlineSalesRegisterCollector.get_telephone_number(9856548758))
+print(OnlineSalesRegisterCollector.get_date_and_time())
